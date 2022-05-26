@@ -15,12 +15,10 @@ const parse = (data) => {
     const dataByRows = data.split('\n')
 
     returnData.name = dataByRows[1].slice(8, -1)          // name and description will be at the same rows 
-    returnData.description = dataByRows[3].slice(15, -1)  // and indexes in all the packages
+    returnData.description = dataByRows[3].slice(15, -1)  // and indexes in all the packages so they can be hard-coded
 
-    returnData.dependenciesInstalled = []
-    returnData.extrasInstalled = []
-    returnData.dependenciesOptional = []
-    returnData.extrasOptional = []
+    returnData.dependencies = []
+    returnData.extras = []
 
     let dependencies = false
     let extras = false
@@ -33,13 +31,13 @@ const parse = (data) => {
       }
 
       if (dependencies) {
-          returnData.dependenciesInstalled.push(
+          returnData.dependencies.push(
             dataByRows[row].slice(0, dataByRows[row].search(' ')).toLowerCase()
           )
         
       }
       if (extras) {
-          returnData.extrasInstalled.push(
+          returnData.extras.push(
             dataByRows[row].slice(0, dataByRows[row].search(' ')).toLowerCase()
           )
         

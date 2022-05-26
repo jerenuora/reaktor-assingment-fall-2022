@@ -1,6 +1,9 @@
 import React from 'react'
-
-import PackageLink from './PackageList'
+import Box from '@mui/material/Box'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import { Link } from 'react-router-dom'
 
 const Packages = ({ data }) => {
   console.log(data)
@@ -15,16 +18,17 @@ const Packages = ({ data }) => {
   return (
     <div>
       <h2>Packages for this poetry.lock</h2>
-      <ul>
-        {data.map((packages) => (
-          <li key={packages.name}>
-            <PackageLink
-              key={packages.name}
-              name={packages.name}
-            />
-          </li>
-        ))}
-      </ul>
+      <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        <List>
+          {data.map((packages) => (
+            <ListItem key={packages.name}>
+              <ListItemButton sx={{color:'blue', textDecoration: 'underline'}} to={`/${packages.name}`}component={Link}>
+               {packages.name}
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
     </div>
   )
 }
