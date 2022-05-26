@@ -4,6 +4,8 @@ import parse from './services/parser'
 import Packages from './components/Packages'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import OnePackage from './components/OnePackage'
+import NavBar from './components/NavBar'
+
 const App = () => {
   const [fetchedData, setData] = useState('')
 
@@ -27,9 +29,7 @@ const App = () => {
   // console.log(parsedData)
   return (
     <Router>
-      <h2>
-        <Link to="/">HOME</Link>
-      </h2>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Packages data={parsedData} />} />
         <Route

@@ -1,14 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import Box from '@mui/material/Box'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import ListItemButton from '@mui/material/ListItemButton'
-import { Link } from 'react-router-dom'
+import ListItemText from '@mui/material/ListItemText'
+import ListItemWithLink from './ListItemWithLink'
 
 const OnePackage = ({ packageInfo }) => {
   const name = useParams().name
@@ -26,6 +25,9 @@ const OnePackage = ({ packageInfo }) => {
   console.log(packageToShow)
   return (
     <div>
+      <div>
+        <p></p>
+      </div>
       <Grid
         container
         spacing={2}
@@ -80,15 +82,13 @@ const OnePackage = ({ packageInfo }) => {
             <List>
               {packageToShow.dependencies.map((dependency) => {
                 if (packageInfo.find((p) => p.name === dependency)) {
+                  return <ListItemWithLink dependency={dependency} />
+                } else {
                   return (
                     <ListItem key={dependency}>
-                      <ListItemButton sx={{color:'blue', textDecoration: 'underline'}} to={`/${dependency}`} component={Link}>
-                        {dependency}
-                      </ListItemButton>
+                      <ListItemText primary={dependency} />
                     </ListItem>
                   )
-                } else {
-                  return <ListItem key={dependency}>{dependency}</ListItem>
                 }
               })}
             </List>
@@ -107,15 +107,13 @@ const OnePackage = ({ packageInfo }) => {
             <List>
               {packageToShow.extras.map((extra) => {
                 if (packageInfo.find((p) => p.name === extra)) {
+                  return <ListItemWithLink dependency={extra} />
+                } else {
                   return (
                     <ListItem key={extra}>
-                      <ListItemButton sx={{color:'blue'}} to={`/${extra}`} component={Link}>
-                        {extra}
-                      </ListItemButton>
+                      <ListItemText primary={extra} />
                     </ListItem>
                   )
-                } else {
-                  return <ListItem key={extra}>{extra}</ListItem>
                 }
               })}
             </List>
