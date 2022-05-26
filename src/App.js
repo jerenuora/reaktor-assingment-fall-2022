@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import parse from './services/parser'
 import Packages from './components/Packages'
-
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import OnePackage from './components/OnePackage'
 const App = () => {
   const [fetchedData, setData] = useState('')
 
@@ -25,9 +26,18 @@ const App = () => {
   const parsedData = parse(fetchedData)
   // console.log(parsedData)
   return (
-    <div className="App">
-      <Packages data={parsedData} />
-    </div>
+    <Router>
+      <h2>
+        <Link to="/">HOME</Link>
+      </h2>
+      <Routes>
+        <Route path="/" element={<Packages data={parsedData} />} />
+        <Route
+          path="/:name"
+          element={<OnePackage packageInfo={parsedData} />}
+        />
+      </Routes>
+    </Router>
   )
 }
 

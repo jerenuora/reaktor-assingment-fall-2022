@@ -14,8 +14,8 @@ const parse = (data) => {
 
     const dataByRows = data.split('\n')
 
-    returnData.name = dataByRows[1].slice(8, -2)          // name and description will be at the same rows 
-    returnData.description = dataByRows[3].slice(15, -2)  // and indexes in all the packages
+    returnData.name = dataByRows[1].slice(8, -1)          // name and description will be at the same rows 
+    returnData.description = dataByRows[3].slice(15, -1)  // and indexes in all the packages
 
     returnData.dependenciesInstalled = []
     returnData.extrasInstalled = []
@@ -33,26 +33,16 @@ const parse = (data) => {
       }
 
       if (dependencies) {
-        if (dataByRows[row].search('optional = true') !== -1) { 
-          returnData.dependenciesOptional.push(
-            dataByRows[row].slice(0, dataByRows[row].search(' ')) 
-          )
-        } else {
           returnData.dependenciesInstalled.push(
-            dataByRows[row].slice(0, dataByRows[row].search(' '))
+            dataByRows[row].slice(0, dataByRows[row].search(' ')).toLowerCase()
           )
-        }
+        
       }
       if (extras) {
-        if (dataByRows[row].search('optional = true') !== -1) {
-          returnData.extrasOptional.push(
-            dataByRows[row].slice(0, dataByRows[row].search(' '))
-          )
-        } else {
           returnData.extrasInstalled.push(
-            dataByRows[row].slice(0, dataByRows[row].search(' '))
+            dataByRows[row].slice(0, dataByRows[row].search(' ')).toLowerCase()
           )
-        }
+        
       }
       if (dataByRows[row] === '[package.dependencies]') { // mark the beginning of dependencies 
         dependencies = true
