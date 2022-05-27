@@ -82,7 +82,7 @@ const OnePackage = ({ packageInfo }) => {
             <List>
               {packageToShow.dependencies.map((dependency) => {
                 if (packageInfo.find((p) => p.name === dependency)) {
-                  return <ListItemWithLink dependency={dependency} />
+                  return <ListItemWithLink key={dependency} dependency={dependency} />
                 } else {
                   return (
                     <ListItem key={dependency}>
@@ -107,7 +107,7 @@ const OnePackage = ({ packageInfo }) => {
             <List>
               {packageToShow.extras.map((extra) => {
                 if (packageInfo.find((p) => p.name === extra)) {
-                  return <ListItemWithLink dependency={extra} />
+                  return <ListItemWithLink key={extra} dependency={extra} />
                 } else {
                   return (
                     <ListItem key={extra}>

@@ -20,7 +20,7 @@ const Packages = ({ data }) => {
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <List sx={{ columns: '1 auto' }}>
           {data.map((packages) => (
-            <ListItemWithLink dependency={packages.name} />
+            <ListItemWithLink key={packages.name} dependency={packages.name} />
           ))}
         </List>
       </Box>
