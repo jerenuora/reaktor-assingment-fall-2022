@@ -20,9 +20,8 @@ const OnePackage = ({ packageInfo }) => {
     )
   }
 
-  console.log('packageinfo', packageInfo)
   const packageToShow = packageInfo.find((p) => p.name === name)
-  console.log(packageToShow)
+
   return (
     <div>
       <div>
@@ -82,7 +81,12 @@ const OnePackage = ({ packageInfo }) => {
             <List>
               {packageToShow.dependencies.map((dependency) => {
                 if (packageInfo.find((p) => p.name === dependency)) {
-                  return <ListItemWithLink key={dependency} dependency={dependency} />
+                  return (
+                    <ListItemWithLink
+                      key={dependency}
+                      dependency={dependency}
+                    />
+                  )
                 } else {
                   return (
                     <ListItem key={dependency}>

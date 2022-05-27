@@ -4,8 +4,6 @@ import List from '@mui/material/List'
 import ListItemWithLink from './ListItemWithLink'
 
 const Packages = ({ data }) => {
-  console.log(data)
-  console.log(Object.keys(data).length)
   if (Object.keys(data).length < 2) {
     return (
       <div>

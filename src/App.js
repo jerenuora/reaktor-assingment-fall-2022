@@ -26,7 +26,7 @@ const App = () => {
   }, [])
 
   const parsedData = parse(fetchedData)
-  // console.log(parsedData)
+
   return (
     <Router>
       <NavBar />

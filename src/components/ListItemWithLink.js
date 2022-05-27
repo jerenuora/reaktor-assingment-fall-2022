@@ -4,7 +4,7 @@ import ListItem from '@mui/material/ListItem'
 import { Link } from 'react-router-dom'
 
 const ListItemWithLink = ({ dependency }) => {
-return (
+  return (
     <ListItem key={dependency} disablePadding>
       <ListItemButton
         sx={{ color: 'blue' }}
